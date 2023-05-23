@@ -3,9 +3,13 @@ declare(strict_types=1);
 
 class Task 
 {
+    public const PRIORITY_LOW = 0;
+    public const PRIORITY_MIDDLE = 1;
+    public const PRIORITY_HIGH = 2;
+
     private $name;
     private $progress;
-    private $secret;
+    public $priority;
     
     public function getName(): string
     {
@@ -40,5 +44,20 @@ class Task
     public function clearProgress(): void
     {
         $this->progress = 0;
+    }
+
+    public function getPriorityAsString(): string
+    {
+        switch ($this->priority) {
+            case self::PRIORITY_LOW :
+                return 'LOW';
+                break;
+            case self::PRIORITY_MIDDLE :
+                return 'MIDDLE';
+                break;
+            case self::PRIORITY_HIGH :
+                return 'HIGH';
+                break;
+        }
     }
 }

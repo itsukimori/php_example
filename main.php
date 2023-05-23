@@ -17,6 +17,9 @@
 
         $task->setProgress(150);
         echo 'Task Progress: ', $task->getProgress(), '<br>';
+
+        $task->priority = Task::PRIORITY_HIGH;
+        echo 'Priority: ', $task->getPriorityAsString(); 
     ?>
 </body>
 </html>
