@@ -9,17 +9,32 @@
 <body>
     <h1>sample PHP</h1>
     <?php 
-        require_once dirname(__FILE__) . '/Task.php';
-        $task = new Task();
+        require_once dirname(__FILE__) . '/ShoppingPoint.php';
 
-        $task->setName('少しだけ疲れた。');
-        echo 'Task Name: ', $task->getName(), '<br>';
+        class WeekDayPoint
+        {
+            public function addWeekDayPoint(string $youbi)
+            {
+                if ($youbi === 'Fri') {
+                    ShoppingPoint::countUpPoint();
+                }
+            }    
+        }
+        function addPricePoint(int $price)
+        {
+            if ($price >= 1000) {
+                ShoppingPoint::countUpPoint();
+            }
+        }
+        ShoppingPoint::$point = 0;
+        ShoppingPoint::countUpPoint();
 
-        $task->setProgress(150);
-        echo 'Task Progress: ', $task->getProgress(), '<br>';
+        $weekDayPoint = new WeekDayPoint();
+        $weekDayPoint->addWeekDayPoint('Fri');
 
-        $task->priority = Task::PRIORITY_HIGH;
-        echo 'Priority: ', $task->getPriorityAsString(); 
+        addPricePoint(1500);
+
+        echo '購入ポイントは：　' , ShoppingPoint::$point;
     ?>
 </body>
 </html>
