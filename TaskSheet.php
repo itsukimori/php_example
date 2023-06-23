@@ -6,21 +6,10 @@ require_once dirname(__FILE__) . '/Task.php';
 class TaskSheet
 {
     public $tasks = [];
-
-    public function addTask(Task $task): void
+    public function addTask(Task $hoge)
     {
-        $this->tasks[] = $task;
-        echo $task->name, '追加しました。', '<br>';
+        $this->tasks[] = $hoge;
+        echo $hoge->name;
     }
 
-    public function show(): void
-    {
-        foreach($this->tasks as $task) {
-            if ($task->isCompleted()) {
-                echo '<p style="color:red;">', $task->name, '</p>', '<br>';
-            } else {
-                echo $task->name, '<br>';
-            }
-        }
-    }
 }

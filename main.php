@@ -7,14 +7,19 @@
     <title>php</title>
 </head>
 <body>
-    <h1>PHP</h1>
+    <h1>PHP 0</h1>
     <?php 
-        require_once dirname(__FILE__) . '/DigitalClock.php';
+       require_once dirname(__FILE__) . '/Task.php';
 
-        $currentTime = strtotime('2018-08-22 17:04');
-        $digitalClock = new DigitalClock();
-        $digitalClock->setTime($currentTime);
-        echo $digitalClock->show();
+       $task01 = new Task();
+
+       $task01->setName('test method in the house');
+       $task01->setProgress(1290);
+       $task01->setPriority(2);
+       
+       echo $task01->getName() . '<br>';
+       echo $task01->getProgress() . '<br>';
+       echo $task01->getPriorityAsString();
     ?>
 </body>
 </html>
