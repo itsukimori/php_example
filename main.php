@@ -7,19 +7,34 @@
     <title>php</title>
 </head>
 <body>
-    <h1>PHP 0</h1>
+    <h1>PHP 60</h1>
     <?php 
-       require_once dirname(__FILE__) . '/Task.php';
+       require_once dirname(__FILE__) . '/ShoppingPoint.php';
 
-       $task01 = new Task();
-
-       $task01->setName('test method in the house');
-       $task01->setProgress(1290);
-       $task01->setPriority(2);
+       class WeekDayPoint
+       {
+        public function addWeekPoint(string $youbi)
+        {
+            if ($youbi === 'Fri') {
+                ShoppingPoint::countUpPoint();
+            }
+        }
+       }
+       function addPricePoint(int $price)
+       {
+        if ($price >= 5000) {
+            ShoppingPoint::$point += 5;
+        }
+       }
        
-       echo $task01->getName() . '<br>';
-       echo $task01->getProgress() . '<br>';
-       echo $task01->getPriorityAsString();
+       ShoppingPoint::$point = 0;
+
+       $weekDay = new WeekDayPoint();
+       $weekDay->addWeekPoint('Fri');
+
+       addPricePoint(6000);
+
+       echo ShoppingPoint::$point;
     ?>
 </body>
 </html>
