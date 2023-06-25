@@ -7,34 +7,23 @@
     <title>php</title>
 </head>
 <body>
-    <h1>PHP 60</h1>
+    <h1>PHP 61</h1>
     <?php 
-       require_once dirname(__FILE__) . '/ShoppingPoint.php';
+       require_once dirname(__FILE__) . '/DigitalClock.php';
+       require_once dirname(__FILE__) . '/AnalogClock.php';
+       require_once dirname(__FILE__) . '/Canvas.php';
 
-       class WeekDayPoint
-       {
-        public function addWeekPoint(string $youbi)
-        {
-            if ($youbi === 'Fri') {
-                ShoppingPoint::countUpPoint();
-            }
-        }
-       }
-       function addPricePoint(int $price)
-       {
-        if ($price >= 5000) {
-            ShoppingPoint::$point += 5;
-        }
-       }
-       
-       ShoppingPoint::$point = 0;
+       $canvas = new Canvas();
 
-       $weekDay = new WeekDayPoint();
-       $weekDay->addWeekPoint('Fri');
+       $currentTime = strtotime('2018-08-22 17:15');
 
-       addPricePoint(6000);
+       $digitalClock = new DigitalClock();
+       $digitalClock->setTime($currentTime);
+       $canvas->drawClock($digitalClock);
 
-       echo ShoppingPoint::$point;
+       $analogClock = new AnalogClock();
+       $analogClock->setTime($currentTime);
+       $canvas->drawClock($analogClock);
     ?>
 </body>
 </html>
